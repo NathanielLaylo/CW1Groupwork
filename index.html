@@ -9,6 +9,26 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="app">
+        <header>
+            <h1 v-text="sitename"></h1>
+        </header>
+    </div>
+    <script type="text/javascript">
+        var webstore = new Vue({
+            el: '#app', 
+            data: { 
+                sitename: 'Book Lesson Now',
+                product:{
+                    id: 1001,
+                    subject: "Math",
+                    location: "London",
+                    price: 2000,
+                    space: 5,
+                    image: "math.png"
+                }
+            }
+        });
+    </script>
 </body>
 </html>
