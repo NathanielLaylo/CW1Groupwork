@@ -24,7 +24,8 @@
                 <p>Location: {{lesson.location}}</p>
                 <p>Price: £{{lesson.price}}</p>
                 <p>Spaces: {{lesson.space}}</p>
-                <input type="button" v-on:click='add' value="Add to Cart"></inputtype>
+                <button v-on:click='add' v-if="canAddtoCart"> Add to cart </button>
+                <button disabled v-else> Add to cart </button>
     
             </main>
         </div>
@@ -52,6 +53,10 @@
                     this.lesson.space = x;
                     return this.lesson.space;
                 }
+            },
+            computed: {
+                canAddtoCart: function () {
+                    return this.lesson.space > 0;
             }
         });
     </script>
