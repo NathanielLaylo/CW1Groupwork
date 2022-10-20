@@ -23,6 +23,10 @@ img {
     border-color: #0a4994;
     color: white;
 }
+.lesson button:disabled {
+    background-color: #5093e4;
+    border-color: #5093e4;
+}
 
 .smallimage {
     margin-left: 35px;
