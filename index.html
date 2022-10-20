@@ -13,6 +13,18 @@
         <header>
             <h1 v-text="sitename"></h1>
         </header>
+        <main>
+            <figure>
+            <img v-bind:src="product.image" class="smallimage">
+            </figure>
+            <h2 v-text="product.subject"></h2>
+            <p v-text="product.location"></p>
+            <p v-text="product.price"></p>
+            <p v-text="product.space"></p>
+            <p>Price: {{product.price}}</p>
+            <input type="button" v-on:click='add' value="Add to Cart"></inputtype>
+
+        </main>
     </div>
     <script type="text/javascript">
         var webstore = new Vue({
@@ -26,6 +38,16 @@
                     price: 2000,
                     space: 5,
                     image: "./images/math.png"
+                }
+            },
+            methods: {
+                add: function () {
+                    let x = parseFloat(this.product.space);
+                    if(x > 0){
+                        x = x - 1;
+                    }
+                    this.product.space = x;
+                    return this.product.space;
                 }
             }
         });
