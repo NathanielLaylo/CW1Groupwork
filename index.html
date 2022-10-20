@@ -43,12 +43,12 @@
             
             <main>
                 <figure>
-                    <img v-bind:src="product.image" class="smallimage">
+                    <img v-bind:src="lesson.image" class="smallimage">
                 </figure>
-                <p>Subject: {{product.subject}}</p>
-                <p>Location: {{product.location}}</p>
-                <p>Price: £{{product.price}}</p>
-                <p>Spaces: {{product.space}}</p>
+                <p>Subject: {{lesson.subject}}</p>
+                <p>Location: {{lesson.location}}</p>
+                <p>Price: £{{lesson.price}}</p>
+                <p>Spaces: {{lesson.space}}</p>
                 <input type="button" v-on:click='add' value="Add to Cart"></inputtype>
     
             </main>
@@ -59,7 +59,7 @@
             el: '#app', 
             data: { 
                 sitename: 'Book Lesson Now',
-                product:{
+                lesson:{
                     id: 1001,
                     subject: "Math",
                     location: "London",
@@ -70,12 +70,12 @@
             },
             methods: {
                 add: function () {
-                    let x = parseFloat(this.product.space);
+                    let x = parseFloat(this.lesson.space);
                     if(x > 0){
                         x = x - 1;
                     }
-                    this.product.space = x;
-                    return this.product.space;
+                    this.lesson.space = x;
+                    return this.lesson.space;
                 }
             }
         });
