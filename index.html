@@ -17,11 +17,10 @@
             <figure>
             <img v-bind:src="product.image" class="smallimage">
             </figure>
-            <h2 v-text="product.subject"></h2>
-            <p v-text="product.location"></p>
-            <p v-text="product.price"></p>
-            <p v-text="product.space"></p>
+            <p>Subject: {{product.subject}}</p>
+            <p>Location: {{product.location}}</p>
             <p>Price: {{product.price}}</p>
+            <p>Spaces: {{product.space}}</p>
             <input type="button" v-on:click='add' value="Add to Cart"></inputtype>
 
         </main>
