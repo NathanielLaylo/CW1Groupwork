@@ -5,17 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Book Lesson</title>
-    <title>Document</title>
 </head>
 <body>
-    <div id="app">
+    <div id="lessonApp">
         <header>
-            <h1 v-text="sitename"></h1>
+            <h1 v-text="siteName"></h1>
         </header>
         <div class="lesson">
-            
             <main>
                 <figure>
                     <img v-bind:src="lesson.image" class="smallimage">
@@ -23,42 +21,48 @@
                 <p>Subject: {{lesson.subject}}</p>
                 <p>Location: {{lesson.location}}</p>
                 <p>Price: £{{lesson.price}}</p>
-                <p>Spaces: {{lesson.space}}</p>
-                <button v-on:click='add' v-if="canAddtoCart"> Add to cart </button>
+                <p>Spaces: <b v-text="lesson.space - cartCount(lesson)"></b></p>
+                <button v-on:click="add_To_Cart(lesson)" v-if="canAddtoCart(lesson)"> Add to cart </button>
                 <button disabled v-else> Add to cart </button>
-    
             </main>
         </div>
     </div>
     <script type="text/javascript">
         var webstore = new Vue({
-            el: '#app', 
+            el: "#lessonApp", 
             data: { 
-                sitename: 'Book Lesson Now',
+                siteName: "Book A Lesson Now",
                 lesson:{
-                    id: 1001,
+                    id: 1,
                     subject: "Math",
                     location: "London",
-                    price: 2000,
+                    price: 100,
                     space: 5,
-                    image: "./images/math.png"
-                }
+                    image: "images/math.png"
+                },
+                cart: [],
             },
+
+
             methods: {
-                add: function () {
-                    let x = parseFloat(this.lesson.space);
-                    if(x > 0){
-                        x = x - 1;
+                canAddtoCart(lesson){
+                    return lesson.space > this.cartCount(lesson);
+                },
+                //pushes item to cart
+                add_To_Cart (lesson) {
+                    this.cart.push(lesson);
+                },
+                //counts the number of lesson's space being added to cart
+                cartCount(lesson) {
+                    let count = 0;
+                    for(var i = 0; i < this.cart.length; i++) {                        
+                        if (this.cart[i] === lesson) {
+                            count++;
+                        }
                     }
-                    this.lesson.space = x;
-                    return this.lesson.space;
-                }
+                    return count;
+                },
             },
-            computed: {
-                canAddtoCart: function () {
-                    return this.lesson.space > 0;
-                }
-            }
         });
     </script>
 </body>
